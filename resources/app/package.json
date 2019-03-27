@@ -1,0 +1,30 @@
+{
+  "name": "LoL Pick",
+  "version": "1.0.0",
+  "description": "LoL Pick",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^1.8.4"
+  },
+  "dependencies": {
+    "atob": "^2.1.2",
+    "haikudos": "^1.0.7",
+    "irc": "^0.5.2",
+    "ps-node": "^0.1.6",
+    "tmi.js": "^1.2.1",
+    "ws": "^6.1.3"
+  }
+}

@@ -1,0 +1,112 @@
+<html>
+	<head>
+		<style>
+			*{
+				margin: 0px;
+				padding: 0px;
+				text-align: center;
+				font-family: trebuchet ms;
+				overflow: hidden;
+			}
+			
+			body{
+				background: #151b27;
+			}
+			
+			#titulo{
+				color: white;
+				background: #28303f;
+				padding: 10px;
+				font-weight: bold;
+				font-size: 18px;
+			}
+			
+			.alertTitle{
+				font-family: trebuchet ms;
+				font-size: 12px;
+				color: white;
+				padding: 5px;
+			}
+			
+			
+			
+			.eventTitle{
+				font-weight: bold;
+				font-size: 14px;
+				color: white;
+				padding: 5px;
+				height: 35px;
+			}
+			
+			
+			.eventTimer{
+				font-weight: bold;
+				font-size: 32px;
+				color: white;
+				padding: 5px;
+				height: 35px;
+			}
+			
+			.btn{
+				font-size: 12px;
+			    -webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+				display: inline-block;
+				text-align: center;
+				border-radius: 4px;
+				padding: 8px 35px;
+				font-weight: 400;
+				cursor: pointer;
+				white-space: nowrap;
+				line-height: 1.49em;
+				transition: background-color .15s ease-in,border-color .15s ease-in;
+				background-color: transparent;
+				border: 1px solid #979797;
+				color: #fff;
+			}
+			
+			.red{
+			    background-color: #eb2b44;
+				border: 1px solid #eb2b44;
+			}
+		</style>
+		<script>
+			var ipc = require('electron').ipcRenderer;
+			var eventData = false;
+		
+			ipc.on('info', (event, message) => {
+			
+				eventData = message;
+				document.getElementById("tituloEvento").innerHTML = message.tournament.name;
+				
+			})
+			
+			
+			function cancelar(){
+				ipc.send('cancelarrodada',eventData);
+			}
+			
+			
+			function checkin(){
+				ipc.send('ready',eventData);
+			}
+		</script>
+	</head>
+	<body >
+		<div id="titulo"><img src="logo.png" height="15px"></div>
+		<div class="alertTitle">Sua rodada está pronta</div>
+		<div class="eventTitle" id="tituloEvento"></div>
+		
+		
+		<div class="eventTimer"> </div>
+		<div style="padding: 10px;position: absolute; bottom: 0px; width: calc(100% - 20px);">
+		
+			<div class="btn" style="float: left;" onclick="cancelar()">CANCELAR</div>
+			<div class="btn red" style="float: right;" onclick="checkin()">PRONTO</div>
+		</div>
+	
+	</body>
+</html>
